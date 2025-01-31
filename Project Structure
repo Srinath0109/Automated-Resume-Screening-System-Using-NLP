@@ -1,0 +1,11 @@
+ResumeScreeningSystem/
+│── backend/                  # Flask Backend
+│   │── models/                # Data models
+│   │── routes/                # API endpoints
+│   │── services/              # NLP resume processing
+│   │── main.py                # Main app entry point
+│   │── config.py              # Configuration settings
+│── frontend/                  # HTML/CSS/JS Frontend
+│── resumes/                   # Uploaded resumes (PDF)
+│── requirements.txt           # Dependencies
+│── README.md                  # Documentation
