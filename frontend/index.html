@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Screening System</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        #result { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Upload Resume for Screening</h1>
+    <form id="upload-form">
+        <input type="file" id="resume" accept="application/pdf" required><br><br>
+        <textarea id="job_desc" rows="5" cols="50" placeholder="Paste Job Description Here"></textarea><br><br>
+        <button type="submit">Upload & Analyze</button>
+    </form>
+    <p id="result"></p>
+
+    <script>
+        document.getElementById("upload-form").onsubmit = async function(event) {
+            event.preventDefault();
+            let formData = new FormData();
+            formData.append("resume", document.getElementById("resume").files[0]);
+            formData.append("job_desc", document.getElementById("job_desc").value);
+
+            let response = await fetch("http://127.0.0.1:5000/upload", {
+                method: "POST",
+                body: formData
+            });
+
+            let result = await response.json();
+            document.getElementById("result").innerText = "Match Score: " + result.ranking_score + "%";
+        };
+    </script>
+</body>
+</html>
